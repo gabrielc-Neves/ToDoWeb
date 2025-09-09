@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cadastrar Nova Tarefa - To-Do List</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="form-container">
+      <h2>Cadastrar Nova Tarefa</h2>
+      <form action="../backend/add_task.php" method="POST">
+        <input type="text" name="title" placeholder="Nome da tarefa" required />
+
+        <textarea
+          name="descricao"
+          placeholder="Descrição detalhada"
+          rows="4"
+        ></textarea>
+
+        <label for="deadline">Data de conclusão:</label>
+        <input type="date" name="deadline" required />
+
+        <label for="prioridade">Prioridade:</label>
+        <select name="prioridade" required>
+          <option value="Alta">Alta</option>
+          <option value="Média">Média</option>
+          <option value="Baixa">Baixa</option>
+        </select>
+
+        <label for="categoria">Categoria:</label>
+        <select name="categoria">
+          <option value="Trabalho">Trabalho</option>
+          <option value="Estudo">Estudo</option>
+          <option value="Pessoal">Pessoal</option>
+          <option value="Outros">Outros</option>
+        </select>
+
+        <button type="submit" class="btn">Salvar Tarefa</button>
+      </form>
+      <p><a href="index.html">← Voltar para a Home</a></p>
+    </div>
+  </body>
+</html>
