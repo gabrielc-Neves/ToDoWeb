@@ -1,44 +1,97 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cadastrar Nova Tarefa - To-Do List</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div class="form-container">
-      <h2>Cadastrar Nova Tarefa</h2>
-      <form action="../backend/add_task.php" method="POST">
-        <input type="text" name="title" placeholder="Nome da tarefa" required />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tarefas - To-Do List</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <h1 class="logo">To-Do List</h1>
+      <div class="nav-links">
+        <a href="index.html" class="btn btn-outline">Home</a>
+        <a href="login.html" class="btn">Login</a>
+      </div>
+    </nav>
+  </header>
 
-        <textarea
-          name="descricao"
-          placeholder="Descrição detalhada"
-          rows="4"
-        ></textarea>
+  <main class="container">
+    <section class="section">
+      <h2>Gerenciar Tarefas</h2>
+      <p>Adicione, visualize, edite, conclua e exclua tarefas — tudo nesta página.</p>
+      <div class="grid-2">
+        <!-- Card: Nova Tarefa -->
+        <div class="card">
+          <h3>Nova Tarefa</h3>
+          <form id="taskForm">
+            <div class="input-group">
+              <label for="title">Título</label>
+              <input id="title" name="title" type="text" placeholder="Ex.: Estudar SQL" required />
+            </div>
+            <div class="input-group">
+              <label for="descricao">Descrição</label>
+              <textarea id="descricao" name="descricao" rows="3" placeholder="Detalhes da tarefa"></textarea>
+            </div>
+            <div class="input-row">
+              <div class="input-group">
+                <label for="deadline">Prazo</label>
+                <input id="deadline" name="deadline" type="date" />
+              </div>
+              <div class="input-group">
+                <label for="prioridade">Prioridade</label>
+                <select id="prioridade" name="prioridade">
+                  <option value="Baixa">Baixa</option>
+                  <option value="Média">Média</option>
+                  <option value="Alta">Alta</option>
+                </select>
+              </div>
+              <div class="input-group">
+                <label for="categoria">Categoria</label>
+                <select id="categoria" name="categoria">
+                  <option value="Trabalho">Trabalho</option>
+                  <option value="Estudo">Estudo</option>
+                  <option value="Pessoal">Pessoal</option>
+                  <option value="Outros">Outros</option>
+                </select>
+              </div>
+            </div>
+            <button type="submit" class="btn">Adicionar</button>
+          </form>
+        </div>
 
-        <label for="deadline">Data de conclusão:</label>
-        <input type="date" name="deadline" required />
+        <!-- Card: Lista de Tarefas -->
+        <div class="card">
+          <div class="list-header">
+            <h3>Tarefas</h3>
+            <div class="filters">
+              <select id="filterStatus" title="Filtrar por status">
+                <option value="todas">Todas</option>
+                <option value="abertas">Abertas</option>
+                <option value="concluidas">Concluídas</option>
+              </select>
+              <select id="filterCategoria" title="Filtrar por categoria">
+                <option value="todas">Todas categorias</option>
+                <option value="Trabalho">Trabalho</option>
+                <option value="Estudo">Estudo</option>
+                <option value="Pessoal">Pessoal</option>
+                <option value="Outros">Outros</option>
+              </select>
+            </div>
+          </div>
+          <ul id="taskList" class="task-list"></ul>
+        </div>
+      </div>
+    </section>
+  </main>
 
-        <label for="prioridade">Prioridade:</label>
-        <select name="prioridade" required>
-          <option value="Alta">Alta</option>
-          <option value="Média">Média</option>
-          <option value="Baixa">Baixa</option>
-        </select>
+  <footer>
+    <p>© 2025 To-Do List | Gerenciamento completo em uma página</p>
+  </footer>
 
-        <label for="categoria">Categoria:</label>
-        <select name="categoria">
-          <option value="Trabalho">Trabalho</option>
-          <option value="Estudo">Estudo</option>
-          <option value="Pessoal">Pessoal</option>
-          <option value="Outros">Outros</option>
-        </select>
+  <script src="tarefas.js">
 
-        <button type="submit" class="btn">Salvar Tarefa</button>
-      </form>
-      <p><a href="index.html">← Voltar para a Home</a></p>
-    </div>
-  </body>
+  </script>
+</body>
 </html>
