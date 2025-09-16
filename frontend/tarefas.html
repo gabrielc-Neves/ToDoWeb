@@ -1,71 +1,84 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gerenciar Tarefas - To-Do List</title>
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
-<div class="page-container">
-  <header>
-    <h1>Minhas Tarefas</h1>
-    <button id="openFormBtn" class="btn-primary">+ Nova Tarefa</button>
-  </header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gerenciar Tarefas - To-Do List</title>
+    <link rel="stylesheet" href="/ToDoWeb/frontend/tarefas.css" />
+  </head>
+  <body>
+    <div class="page-container">
+      <header>
+        <h1>Minhas Tarefas</h1>
+        <button id="openFormBtn" class="btn-primary">+ Nova Tarefa</button>
+      </header>
 
-  <!-- Modal de Cadastro -->
-  <div id="taskModal" class="modal">
-    <div class="modal-content">
-      <span id="closeModal" class="close">&times;</span>
-      <h2>Cadastrar / Editar Tarefa</h2>
-      <form id="taskForm">
-        <input type="hidden" name="id" id="taskId">
-        <input type="text" name="title" id="title" placeholder="Nome da tarefa" required>
-        <textarea name="descricao" id="descricao" placeholder="Descrição detalhada" rows="3"></textarea>
-        
-        <label for="deadline">Data de conclusão:</label>
-        <input type="date" name="deadline" id="deadline" required>
-        
-        <label for="prioridade">Prioridade:</label>
-        <select name="prioridade" id="prioridade" required>
-          <option value="Alta">Alta</option>
-          <option value="Média">Média</option>
-          <option value="Baixa">Baixa</option>
-        </select>
-        
-        <label for="categoria">Categoria:</label>
-        <select name="categoria" id="categoria">
-          <option value="Trabalho">Trabalho</option>
-          <option value="Estudo">Estudo</option>
-          <option value="Pessoal">Pessoal</option>
-          <option value="Outros">Outros</option>
-        </select>
-        
-        <button type="submit" class="btn-primary full-width">Salvar Tarefa</button>
-      </form>
+      <!-- Modal de Cadastro -->
+      <div id="taskModal" class="modal">
+        <div class="modal-content">
+          <span id="closeModal" class="close">&times;</span>
+          <h2>Cadastrar / Editar Tarefa</h2>
+          <form id="taskForm">
+            <input type="hidden" name="id" id="taskId" />
+            <input
+              type="text"
+              name="title"
+              id="title"
+              placeholder="Nome da tarefa"
+              required
+            />
+            <textarea
+              name="descricao"
+              id="descricao"
+              placeholder="Descrição detalhada"
+              rows="3"
+            ></textarea>
+
+            <label for="deadline">Data de conclusão:</label>
+            <input type="date" name="deadline" id="deadline" required />
+
+            <label for="prioridade">Prioridade:</label>
+            <select name="prioridade" id="prioridade" required>
+              <option value="Alta">Alta</option>
+              <option value="Média">Média</option>
+              <option value="Baixa">Baixa</option>
+            </select>
+
+            <label for="categoria">Categoria:</label>
+            <select name="categoria" id="categoria">
+              <option value="Trabalho">Trabalho</option>
+              <option value="Estudo">Estudo</option>
+              <option value="Pessoal">Pessoal</option>
+              <option value="Outros">Outros</option>
+            </select>
+
+            <button type="submit" class="btn-primary full-width">
+              Salvar Tarefa
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Lista de tarefas -->
+      <section class="task-list">
+        <h2>Tarefas</h2>
+        <table id="taskTable">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Descrição</th>
+              <th>Prazo</th>
+              <th>Prioridade</th>
+              <th>Categoria</th>
+              <th>Status</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
     </div>
-  </div>
 
-  <!-- Lista de tarefas -->
-  <section class="task-list">
-    <h2>Tarefas</h2>
-    <table id="taskTable">
-      <thead>
-        <tr>
-          <th>Nome</th>
-          <th>Descrição</th>
-          <th>Prazo</th>
-          <th>Prioridade</th>
-          <th>Categoria</th>
-          <th>Status</th>
-          <th>Ações</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-  </section>
-</div>
-
-<script src="tarefas.js"></script>
-</body>
+    <script src="tarefas.js"></script>
+  </body>
 </html>
