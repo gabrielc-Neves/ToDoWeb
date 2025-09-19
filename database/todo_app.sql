@@ -4,8 +4,13 @@ USE todo_app;
 CREATE TABLE IF NOT EXISTS tasks (
     id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
-    done TINYINT(1) NOT NULL DEFAULT 0
+    descricao TEXT,
+    deadline DATE,
+    prioridade VARCHAR(255),
+    categoria VARCHAR(100),
+    done TINYINT(1) DEFAULT 0
 );
+
 
 CREATE TABLE IF NOT EXISTS usuarios (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -13,3 +18,5 @@ CREATE TABLE IF NOT EXISTS usuarios (
     email VARCHAR(100) UNIQUE NOT NULL,
     senha VARCHAR(255) NOT NULL
 );
+
+

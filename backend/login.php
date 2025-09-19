@@ -11,8 +11,7 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     session_start();
     $_SESSION['usuario'] = $email;
-    header("Location: ../frontend/tarefas.html"); // Redireciona para a página inicial
-} else {
+    header("Location: ../frontend/tarefas.html"); 
     echo "Usuário ou senha inválidos.";
 }
 ?>
