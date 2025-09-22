@@ -30,40 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-document
-  .getElementById("formCadastro")
-  .addEventListener("submit", async function (event) {
-    event.preventDefault();
-
-    const formData = new FormData(this);
-
-    const response = await fetch("../../backend/cadastro.php", {
-      method: "POST",
-      body: formData,
-    });
-
-    const result = await response.json();
-
-    if (result.success) {
-      Swal.fire({
-        icon: "success",
-        title: "Sucesso!",
-        text: result.message,
-        confirmButtonColor: "#3085d6",
-      }).then(() => {
-        window.location.href = "login.html";
-      });
-    } else {
-      Swal.fire({
-        icon: "error",
-        title: "Ops...",
-        text: result.message,
-        confirmButtonColor: "#d33",
-      });
-    }
-  });
-
-let tasksData = []; // manter em memória para ordenar sem precisar recarregar
+let tasksData = []; // <- precisa estar no escopo global
 
 async function loadTasks() {
   const res = await fetch("../../backend/get_task.php");
@@ -86,15 +53,9 @@ function renderTasks(tasks) {
         ${task.done == 1 ? "Concluída" : "Pendente"}
       </td>
       <td>
-        <button class="action-btn edit-btn" onclick="editTask(${
-          task.id
-        })">Editar</button>
-        <button class="action-btn delete-btn" onclick="deleteTask(${
-          task.id
-        })">Excluir</button>
-        <button class="action-btn toggle-btn" onclick="toggleTask(${task.id}, ${
-      task.done
-    })">
+        <button class="action-btn edit-btn" onclick="editTask(${task.id})">Editar</button>
+        <button class="action-btn delete-btn" onclick="deleteTask(${task.id})">Excluir</button>
+        <button class="action-btn toggle-btn" onclick="toggleTask(${task.id}, ${task.done})">
           ${task.done == 1 ? "Reabrir" : "Concluir"}
         </button>
       </td>
@@ -106,21 +67,21 @@ function renderTasks(tasks) {
 // --- Função de ordenação ---
 function sortTasks(column, asc = true) {
   let sorted = [...tasksData];
-
+  
   sorted.sort((a, b) => {
     let valA = a[column] ?? "";
     let valB = b[column] ?? "";
 
     // Se for data
     if (column === "deadline") {
-      return asc
-        ? new Date(valA) - new Date(valB)
+      return asc 
+        ? new Date(valA) - new Date(valB) 
         : new Date(valB) - new Date(valA);
     }
 
     // Se for prioridade, definimos ordem customizada
     if (column === "prioridade") {
-      const order = { Alta: 3, Média: 2, Baixa: 1 };
+      const order = { "Alta": 3, "Média": 2, "Baixa": 1 };
       return asc ? order[valA] - order[valB] : order[valB] - order[valA];
     }
 
@@ -150,6 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
 
 function editTask(id) {
   fetch(`../../backend/get_task.php?id=${id}`)
