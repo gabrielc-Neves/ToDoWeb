@@ -180,6 +180,27 @@ tr:nth-child(even) {
   background: #f4f4f4;
 }
 
+#taskTable th[data-column] {
+  cursor: pointer;
+}
+
+#taskTable th[data-column]:hover {
+  background-color: #00f2fe; /* opcional, dá um destaque no hover */
+}
+
+/* Responsividade da tabela */
+@media (max-width: 680px) {
+  .task-list {
+    overflow-x: auto; /* ativa scroll horizontal */
+  }
+
+  table {
+    min-width: 700px; /* garante que não quebre totalmente */
+    display: block;   /* faz o scroll aparecer */
+  }
+}
+
+
 .status-done {
   color: green;
   font-weight: bold;
