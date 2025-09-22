@@ -30,39 +30,126 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+document
+  .getElementById("formCadastro")
+  .addEventListener("submit", async function (event) {
+    event.preventDefault();
+
+    const formData = new FormData(this);
+
+    const response = await fetch("../../backend/cadastro.php", {
+      method: "POST",
+      body: formData,
+    });
+
+    const result = await response.json();
+
+    if (result.success) {
+      Swal.fire({
+        icon: "success",
+        title: "Sucesso!",
+        text: result.message,
+        confirmButtonColor: "#3085d6",
+      }).then(() => {
+        window.location.href = "login.html";
+      });
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Ops...",
+        text: result.message,
+        confirmButtonColor: "#d33",
+      });
+    }
+  });
+
+let tasksData = []; // manter em memória para ordenar sem precisar recarregar
+
 async function loadTasks() {
   const res = await fetch("../../backend/get_task.php");
-  const tasks = await res.json();
+  tasksData = await res.json();
+  renderTasks(tasksData);
+}
+
+function renderTasks(tasks) {
   const tbody = document.querySelector("#taskTable tbody");
   tbody.innerHTML = "";
   tasks.forEach((task) => {
     const tr = document.createElement("tr");
     tr.innerHTML = `
-            <td>${task.title}</td>
-            <td>${task.descricao || ""}</td>
-            <td>${task.deadline || ""}</td>
-            <td>${task.prioridade}</td>
-            <td>${task.categoria}</td>
-            <td class="${task.done == 1 ? "status-done" : "status-pending"}">${
-      task.done == 1 ? "Concluída" : "Pendente"
-    }</td>
-            <td>
-                <button class="action-btn edit-btn" onclick="editTask(${
-                  task.id
-                })">Editar</button>
-                <button class="action-btn delete-btn" onclick="deleteTask(${
-                  task.id
-                })">Excluir</button>
-                <button class="action-btn toggle-btn" onclick="toggleTask(${
-                  task.id
-                }, ${task.done})">${
-      task.done == 1 ? "Reabrir" : "Concluir"
-    }</button>
-            </td>
-        `;
+      <td>${task.title}</td>
+      <td>${task.descricao || ""}</td>
+      <td>${task.deadline || ""}</td>
+      <td>${task.prioridade}</td>
+      <td>${task.categoria}</td>
+      <td class="${task.done == 1 ? "status-done" : "status-pending"}">
+        ${task.done == 1 ? "Concluída" : "Pendente"}
+      </td>
+      <td>
+        <button class="action-btn edit-btn" onclick="editTask(${
+          task.id
+        })">Editar</button>
+        <button class="action-btn delete-btn" onclick="deleteTask(${
+          task.id
+        })">Excluir</button>
+        <button class="action-btn toggle-btn" onclick="toggleTask(${task.id}, ${
+      task.done
+    })">
+          ${task.done == 1 ? "Reabrir" : "Concluir"}
+        </button>
+      </td>
+    `;
     tbody.appendChild(tr);
   });
 }
+
+// --- Função de ordenação ---
+function sortTasks(column, asc = true) {
+  let sorted = [...tasksData];
+
+  sorted.sort((a, b) => {
+    let valA = a[column] ?? "";
+    let valB = b[column] ?? "";
+
+    // Se for data
+    if (column === "deadline") {
+      return asc
+        ? new Date(valA) - new Date(valB)
+        : new Date(valB) - new Date(valA);
+    }
+
+    // Se for prioridade, definimos ordem customizada
+    if (column === "prioridade") {
+      const order = { Alta: 3, Média: 2, Baixa: 1 };
+      return asc ? order[valA] - order[valB] : order[valB] - order[valA];
+    }
+
+    // Se for status (done)
+    if (column === "done") {
+      return asc ? a.done - b.done : b.done - a.done;
+    }
+
+    // Para strings normais
+    return asc
+      ? valA.toString().localeCompare(valB.toString())
+      : valB.toString().localeCompare(valA.toString());
+  });
+
+  renderTasks(sorted);
+}
+
+// --- Ativar clique nos cabeçalhos ---
+document.addEventListener("DOMContentLoaded", () => {
+  loadTasks();
+
+  document.querySelectorAll("#taskTable th[data-column]").forEach((th) => {
+    let asc = true;
+    th.addEventListener("click", () => {
+      sortTasks(th.dataset.column, asc);
+      asc = !asc; // alterna ordem crescente/decrescente
+    });
+  });
+});
 
 function editTask(id) {
   fetch(`../../backend/get_task.php?id=${id}`)
