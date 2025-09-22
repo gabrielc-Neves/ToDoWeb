@@ -16,7 +16,7 @@ $sql = "INSERT INTO tasks (title, descricao, deadline, prioridade, categoria, do
 
 
 if ($conn->query($sql) === TRUE) {
-    header("Location: ../frontend/tarefas.html");
+    header("Location: ../frontend/pages/tarefas.html");
 } else {
     echo "Erro ao cadastrar tarefa: " . $conn->error;
 }

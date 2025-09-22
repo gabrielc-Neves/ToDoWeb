@@ -11,6 +11,19 @@ body {
   color: #333;
   line-height: 1.6;
 }
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Garante que o conteúdo principal expanda */
+main {
+  flex: 1;
+}
 
 /* Navbar */
 .navbar {
@@ -99,6 +112,7 @@ footer {
   padding: 1rem;
   background: rgba(255, 255, 255, 0.9);
   font-size: 0.9rem;
+  margin-top: auto; /* joga o footer pro final */
 }
 
 /* Responsividade */

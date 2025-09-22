@@ -1,9 +1,32 @@
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background: #f7f9fc;
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
   margin: 0;
   padding: 0;
   color: #333;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Garante que o conteúdo principal expanda */
+main {
+  flex: 1;
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.9);
+  font-size: 0.9rem;
+  margin-top: auto; /* joga o footer pro final */
 }
 
 .page-container {
@@ -16,11 +39,21 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1.5rem;
+  padding: 1rem 2rem;
+  background: rgba(255, 255, 255, 0.9);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 h1 {
+  font-size: 1.5rem;
+  font-weight: bold;
   color: #0077b6;
+}
+
+#tarefas {
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .btn-primary {
@@ -40,6 +73,30 @@ h1 {
 
 .full-width {
   width: 100%;
+}
+
+.nav-menu {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #0077b6;
+  font-weight: 500;
+  transition: color 0.3s, border-bottom 0.3s;
+  padding: 0.3rem 0;
+}
+
+.nav-link:hover {
+  color: #005f87;
+  border-bottom: 2px solid #005f87;
+}
+
+.nav-link.active {
+  color: #005f87;
+  border-bottom: 2px solid #0077b6;
 }
 
 /* Modal */

@@ -16,7 +16,9 @@ document.addEventListener("DOMContentLoaded", () => {
     e.preventDefault();
     const formData = new FormData(form);
     const id = formData.get("id");
-    const url = id ? "../backend/update_task.php" : "../backend/add_task.php";
+    const url = id
+      ? "../../backend/update_task.php"
+      : "../../backend/add_task.php";
     await fetch(url, {
       method: "POST",
       body: formData,
@@ -29,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 async function loadTasks() {
-  const res = await fetch("../backend/get_task.php");
+  const res = await fetch("../../backend/get_task.php");
   const tasks = await res.json();
   const tbody = document.querySelector("#taskTable tbody");
   tbody.innerHTML = "";
@@ -63,7 +65,7 @@ async function loadTasks() {
 }
 
 function editTask(id) {
-  fetch(`../backend/get_task.php?id=${id}`)
+  fetch(`../../backend/get_task.php?id=${id}`)
     .then((res) => res.json())
     .then((task) => {
       document.getElementById("taskId").value = task.id;
@@ -77,7 +79,7 @@ function editTask(id) {
 }
 
 async function deleteTask(id) {
-  await fetch("../backend/delete_task.php", {
+  await fetch("../../backend/delete_task.php", {
     method: "POST",
     body: new URLSearchParams({ id }),
   });
@@ -85,7 +87,7 @@ async function deleteTask(id) {
 }
 
 async function toggleTask(id, done) {
-  await fetch("../backend/toggle_task.php", {
+  await fetch("../../backend/toggle_task.php", {
     method: "POST",
     body: new URLSearchParams({ id, done }),
   });

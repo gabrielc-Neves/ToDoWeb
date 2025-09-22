@@ -15,7 +15,7 @@ if ($check->num_rows > 0) {
 // Insere usuário
 $sql = "INSERT INTO usuario (nome, email, senha) VALUES ('$nome', '$email', MD5('$senha'))";
 if ($conn->query($sql) === TRUE) {
-    header("Location: ../frontend/login.html");
+    header("Location: ../frontend/pages/login.html");
 } else {
     echo "Erro ao cadastrar: " . $conn->error;
 }
