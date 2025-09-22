@@ -8,15 +8,23 @@ $senha = $_POST['senha'];
 // Verifica se o usuário já existe
 $check = $conn->query("SELECT * FROM usuario WHERE email='$email'");
 if ($check->num_rows > 0) {
-    echo "E-mail já cadastrado!";
+    echo json_encode([
+        "success" => false,
+        "message" => "E-mail já cadastrado!"
+    ]);
     exit;
 }
 
 // Insere usuário
 $sql = "INSERT INTO usuario (nome, email, senha) VALUES ('$nome', '$email', MD5('$senha'))";
 if ($conn->query($sql) === TRUE) {
-    header("Location: ../frontend/pages/login.html");
+    echo json_encode([
+        "success" => true,
+        "message" => "Cadastro realizado com sucesso!"
+    ]);
 } else {
-    echo "Erro ao cadastrar: " . $conn->error;
+    echo json_encode([
+        "success" => false,
+        "message" => "Erro ao cadastrar: " . $conn->error
+    ]);
 }
-?>
