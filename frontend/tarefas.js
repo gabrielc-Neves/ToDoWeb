@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 async function loadTasks() {
-  const res = await fetch("../backend/get_tasks.php");
+  const res = await fetch("../backend/get_task.php");
   const tasks = await res.json();
   const tbody = document.querySelector("#taskTable tbody");
   tbody.innerHTML = "";

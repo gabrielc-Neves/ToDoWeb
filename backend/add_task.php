@@ -8,8 +8,12 @@ $prioridade = $_POST['prioridade'];
 $categoria = $_POST['categoria'];
 
 // Insere com os novos campos
-$sql = "INSERT INTO tasks (title, descricao, deadline, prioridade, categoria, done) 
-        VALUES ('$title', '$descricao', '$deadline', '$prioridade', '$categoria', 0)";
+session_start();
+$user_id = $_SESSION['user_id'];
+
+$sql = "INSERT INTO tasks (title, descricao, deadline, prioridade, categoria, done, user_id) 
+        VALUES ('$title', '$descricao', '$deadline', '$prioridade', '$categoria', 0, '$user_id')";
+
 
 if ($conn->query($sql) === TRUE) {
     header("Location: ../frontend/tarefas.html");

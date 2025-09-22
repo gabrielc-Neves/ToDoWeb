@@ -1,6 +1,9 @@
 <?php
 include 'db.php';
 
+session_start();
+$user_id = $_SESSION['user_id'];
+
 $id = intval($_POST['id']);
 $title = $_POST['title'] ?? '';
 $descricao = $_POST['descricao'] ?? '';
@@ -20,7 +23,7 @@ $sql = "UPDATE tasks SET
             deadline=" . ($deadline ? "'{$deadline}'" : "NULL") . ",
             prioridade=" . ($prioridade ? "'{$prioridade}'" : "NULL") . ",
             categoria=" . ($categoria ? "'{$categoria}'" : "NULL") . "
-        WHERE id={$id}";
+        WHERE id={$id} AND user_id='$user_id'";
 
 if ($conn->query($sql) === TRUE) {
     echo json_encode(["ok" => true]);
