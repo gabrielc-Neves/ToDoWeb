@@ -229,3 +229,37 @@ tr:nth-child(even) {
 .toggle-btn {
   background: #0077b6;
 }
+
+/* Estilo padrão do hamburguer (escondido em telas grandes) */
+.hamburger {
+  display: none;
+  font-size: 1.8rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #0077b6;
+}
+
+/* Telas menores que 680px */
+@media (max-width: 680px) {
+  .nav-menu {
+    display: none; /* esconde o menu */
+    flex-direction: column;
+    position: absolute;
+    top: 70px; /* abaixo do header */
+    right: 1rem;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 0.5rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  }
+
+  .nav-menu.active {
+    display: flex; /* mostra quando ativo */
+  }
+
+  .hamburger {
+    display: block; /* aparece só no mobile */
+  }
+}
