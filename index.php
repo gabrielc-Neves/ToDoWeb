@@ -11,20 +11,25 @@ $estaLogado = isset($_SESSION['user_id']);
     <link rel="stylesheet" href="frontend/styles/style.css" />
   </head>
   <body>
-    <header>
-      <nav class="navbar">
-        <h1 class="logo">To-Do List</h1>
-        <div class="nav-links">
-          <?php if ($estaLogado): ?>
-            <a href="frontend/pages/tarefas.html" class="btn">Tarefas</a>
-            <a href="backend/logout.php" class="btn btn-outline">Logout</a>
-          <?php else: ?>
-            <a href="frontend/pages/login.html" class="btn">Login</a>
-            <a href="frontend/pages/cadastro.html" class="btn btn-outline">Cadastro</a>
-          <?php endif; ?>
-        </div>
-      </nav>
-    </header>
+<header>
+  <nav class="navbar">
+    <h1 class="logo">To-Do List</h1>
+
+    <!-- Botão Hamburguer (fora de .nav-links) -->
+    <button id="menuToggle" class="hamburger">☰</button>
+
+    <div class="nav-links">
+      <?php if ($estaLogado): ?>
+        <a href="frontend/pages/tarefas.html" class="btn">Tarefas</a>
+        <a href="backend/logout.php" class="btn btn-outline">Logout</a>
+      <?php else: ?>
+        <a href="frontend/pages/login.html" class="btn">Login</a>
+        <a href="frontend/pages/cadastro.html" class="btn btn-outline">Cadastro</a>
+      <?php endif; ?>
+    </div>
+  </nav> 
+</header>
+
 
     <main class="hero">
       <div class="hero-content">
@@ -49,5 +54,6 @@ $estaLogado = isset($_SESSION['user_id']);
     <footer>
       <p>© 2025 To-Do List | Todos os direitos reservados.</p>
     </footer>
+    <script src=frontend/scripts/ButtonH.js></script>
   </body>
 </html>

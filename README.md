@@ -1,6 +1,6 @@
 # ToDoList ✅
 
-Uma aplicação web de gerenciamento de tarefas, que permite ao usuário cadastrar, editar, excluir, ordenar e gerenciar suas tarefas de forma prática, estruturada e intuitiva.
+Aplicação web de gerenciamento de tarefas, que permite ao usuário cadastrar, editar, excluir, ordenar e gerenciar suas tarefas de forma prática, estruturada e intuitiva.
 
 ---
 

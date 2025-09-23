@@ -189,7 +189,7 @@ tr:nth-child(even) {
 }
 
 /* Responsividade da tabela */
-@media (max-width: 680px) {
+@media (max-width: 748px) {
   .task-list {
     overflow-x: auto; /* ativa scroll horizontal */
   }

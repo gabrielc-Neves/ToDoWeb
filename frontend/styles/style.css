@@ -11,10 +11,13 @@ body {
   color: #333;
   line-height: 1.6;
 }
-html, body {
+
+html,
+body {
   height: 100%;
 }
 
+/* Estrutura base com flex (desktop) */
 body {
   display: flex;
   flex-direction: column;
@@ -23,28 +26,6 @@ body {
 /* Garante que o conteúdo principal expanda */
 main {
   flex: 1;
-}
-
-/* Navbar */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
-  background: rgba(255, 255, 255, 0.9);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
-
-.logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #0077b6;
-}
-
-.nav-links .btn {
-  margin-left: 1rem;
 }
 
 /* Hero */
@@ -79,6 +60,105 @@ main {
   border-radius: 10px;
 }
 
+/* Footer */
+footer {
+  text-align: center;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.9);
+  font-size: 0.9rem;
+  margin-top: auto; /* cola no final em telas grandes */
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  /* Desliga o flex para deixar o footer seguir o fluxo */
+  body {
+    display: block;
+  }
+
+  main {
+    flex: none; /* evita altura forçada no mobile */
+  }
+
+  footer {
+    margin-top: 0;
+    position: static; /* garante que não flutue sobre o conteúdo */
+  }
+
+  .hero {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-content {
+    padding-right: 0;
+  }
+
+  .hero-image {
+    margin-top: 2rem;
+  }
+}
+
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: rgba(255, 255, 255, 0.9);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #0077b6;
+}
+
+.nav-links .btn {
+  margin-left: 1rem;
+}
+
+/* Estilo padrão do hamburguer (escondido em telas grandes) */
+.hamburger {
+  display: none;
+  font-size: 1.8rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #0077b6;
+}
+
+/* Telas menores que 422px */
+@media (max-width: 422px) {
+  .nav-links {
+    display: none; /* esconde o menu */
+    flex-direction: column;
+    position: absolute;
+    top: 50px; /* abaixo do header */
+    right: 1rem;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 0.5rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  }
+
+  .nav-links.active {
+    display: flex; /* mostra quando ativo */
+    padding-right: 1.5rem;
+    align-items: center;
+  }
+
+  .hamburger {
+    display: block; /* aparece só no mobile */
+  }
+}
+
+
 /* Botões */
 .btn {
   display: inline-block;
@@ -106,30 +186,7 @@ main {
   color: white;
 }
 
-/* Footer */
-footer {
-  text-align: center;
-  padding: 1rem;
-  background: rgba(255, 255, 255, 0.9);
-  font-size: 0.9rem;
-  margin-top: auto; /* joga o footer pro final */
-}
 
-/* Responsividade */
-@media (max-width: 768px) {
-  .hero {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .hero-content {
-    padding-right: 0;
-  }
-
-  .hero-image {
-    margin-top: 2rem;
-  }
-}
 /* Formulários de login/cadastro */
 .form-container {
   background: white;
