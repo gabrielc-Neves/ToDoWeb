@@ -70,7 +70,7 @@ footer {
 }
 
 /* Responsividade */
-@media (max-width: 768px) {
+@media (max-width: 768px) and (min-height: 1025px) {
   /* Desliga o flex para deixar o footer seguir o fluxo */
   body {
     display: block;
@@ -97,8 +97,15 @@ footer {
   .hero-image {
     margin-top: 2rem;
   }
+  .main-content {
+    align-items: center;
+    justify-content: space-between;
+    padding: 3rem 2rem;
+    min-height: 50vh;
+    flex-direction: column;
+    text-align: center;
+  }
 }
-
 
 /* Navbar */
 .navbar {
@@ -158,7 +165,6 @@ footer {
   }
 }
 
-
 /* Botões */
 .btn {
   display: inline-block;
@@ -185,7 +191,6 @@ footer {
   background: #0077b6;
   color: white;
 }
-
 
 /* Formulários de login/cadastro */
 .form-container {
