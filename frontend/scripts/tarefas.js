@@ -157,7 +157,6 @@ async function toggleTask(id, done) {
   loadTasks();
 }
 
-
 document
   .getElementById("formCadastro")
   .addEventListener("submit", async function (event) {
